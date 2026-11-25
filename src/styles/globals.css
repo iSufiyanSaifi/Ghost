@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./variants.css";
+@import "../../tokens/colors.css";
+@import "./ghost-style.css";
+
+/* Ghost dark mode is a designed theme switched with data-theme="dark" on <html>. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@font-face { font-family: "SJ Pro"; src: url("../../assets/fonts/SJPro-Thin.otf") format("opentype"); font-weight: 100; font-display: swap; }
+@font-face { font-family: "SJ Pro"; src: url("../../assets/fonts/SJPro-Light.otf") format("opentype"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "SJ Pro"; src: url("../../assets/fonts/SJPro-Regular.otf") format("opentype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "SJ Pro"; src: url("../../assets/fonts/SJPro-Medium.otf") format("opentype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "SJ Pro"; src: url("../../assets/fonts/SJPro-SemiBold.otf") format("opentype"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "SJ Pro"; src: url("../../assets/fonts/SJPro-Bold.otf") format("opentype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "SJ Pro"; src: url("../../assets/fonts/SJPro-Heavy.otf") format("opentype"); font-weight: 800; font-display: swap; }
+@font-face { font-family: "SJ Pro"; src: url("../../assets/fonts/SJPro-Black.otf") format("opentype"); font-weight: 900; font-display: swap; }
+
+/*
+ * Component variables, mapped from the Ghost tokens in tokens/colors.css.
+ * The tokens already switch under [data-theme="dark"], so these follow automatically.
+ */
+:root {
+  --background: var(--bg-app);
+  --foreground: var(--text-primary);
+  --card: var(--surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface-elevated);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--brand-primary);
+  --primary-foreground: var(--brand-primary-on);
+  --secondary: var(--bg-secondary);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-secondary);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--bg-secondary);
+  --accent-foreground: var(--text-primary);
+  --destructive: var(--error);
+  --destructive-foreground: var(--error-on);
+  --input: var(--border-strong);
+  --ring: var(--focus-ring);
+  --chart-1: var(--brand-primary);
+  --chart-2: var(--success);
+  --chart-3: var(--pending);
+  --chart-4: var(--brand-secondary);
+  --chart-5: var(--neutral-status);
+  --sidebar: var(--surface-sidebar);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--brand-primary);
+  --sidebar-primary-foreground: var(--brand-primary-on);
+  --sidebar-accent: var(--bg-secondary);
+  --sidebar-accent-foreground: var(--text-primary);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--focus-ring);
+  --radius: 8px;
+}
+
+@theme inline {
+  --font-sans: "SJ Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-heading: var(--font-sans);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Ghost semantic colours, for Ghost components (status badges etc.). */
+  --color-success: var(--success);
+  --color-success-subtle: var(--success-subtle);
+  --color-success-text: var(--success-text);
+  --color-warning: var(--warning);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-warning-text: var(--warning-text);
+  --color-error: var(--error);
+  --color-error-subtle: var(--error-subtle);
+  --color-error-text: var(--error-text);
+  --color-info: var(--info);
+  --color-info-subtle: var(--info-subtle);
+  --color-info-text: var(--info-text);
+  --color-pending: var(--pending);
+  --color-pending-subtle: var(--pending-subtle);
+  --color-pending-text: var(--pending-text);
+  --color-neutral-subtle: var(--neutral-subtle);
+  --color-neutral-text: var(--neutral-text);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-divider: var(--divider);
+  --color-plate: var(--plate-bg);
+  --color-plate-foreground: var(--plate-fg);
+  --color-plate-border: var(--plate-border);
+
+  /*
+   * Ghost radius scale: 8px controls (rounded-lg), 12px cards (rounded-xl).
+   * Everything above xl is capped at 12px so nothing can turn into a pill.
+   * rounded-full is not themeable; scripts/check-design-rules.mjs blocks it instead.
+   */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 12px;
+  --radius-3xl: 12px;
+  --radius-4xl: 12px;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans text-sm antialiased;
+  }
+  /* Search fields use Ghost's own icons and clear button, not the browser's blue ×. */
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+  /* Lighter icon strokes: Lucide's default 2px becomes 1.5px. A strokeWidth other than 2 is left alone. */
+  .lucide[stroke-width="2"] {
+    stroke-width: 1.5;
+  }
+}

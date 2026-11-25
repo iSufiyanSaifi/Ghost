@@ -1,0 +1,30 @@
+:root{
+--brand-primary:#1C70D4;--brand-primary-hover:#1862BC;--brand-primary-active:#14529E;--brand-primary-subtle:#E8F1FC;--brand-primary-on:#FFFFFF;
+--brand-secondary:#FF1619;--brand-secondary-hover:#E00F12;--brand-secondary-active:#BF0C0F;--brand-secondary-subtle:#FFE9E9;
+--blue-50:#F2F7FF;--blue-100:#E8F1FC;--blue-200:#CBDEFF;--blue-300:#9EC2F2;--blue-400:#5C9AE4;--blue-500:#1C70D4;--blue-600:#1862BC;--blue-700:#14529E;--blue-800:#2C5391;--blue-900:#0F2F5C;
+--gray-0:#FFFFFF;--gray-50:#F6F8F9;--gray-100:#EBEBF0;--gray-200:#E4E4E7;--gray-300:#E6E6E6;--gray-400:#8D9EB2;--gray-500:#808089;--gray-600:#71717A;--gray-700:#363636;--gray-800:#27272A;--gray-850:#202020;--gray-900:#09090B;
+--success:#00A965;--success-subtle:#E3F6EE;--success-text:#007A49;
+--warning:#FFCC00;--warning-subtle:#FFF8E8;--warning-text:#8C5C1B;
+--error:#D34440;--error-subtle:#FBEAE9;--error-text:#B02E2A;--error-on:#FFFFFF;
+--plate-bg:#FFFFFF;--plate-fg:#09090B;--plate-border:#09090B;/* Indian number plates stay white in both themes */
+--info:#1C70D4;--info-subtle:#E8F1FC;--info-text:#1862BC;
+--pending:#D1A04A;--pending-subtle:#FFF8E8;--pending-text:#8C5C1B;
+--neutral-status:#808089;--neutral-subtle:#F4F4F6;--neutral-text:#52525B;
+/* semantic: light */
+--bg-app:#F6F8F9;--bg-secondary:#EEF1F4;--surface:#FFFFFF;--surface-elevated:#FFFFFF;--surface-sidebar:#FFFFFF;--surface-topbar:#FFFFFF;/* components white, page #F6F8F9 */
+--text-primary:#09090B;--text-secondary:#363636;--text-muted:#71717A;--text-placeholder:#8D9EB2;--text-on-brand:#FFFFFF;--text-link:#1862BC;
+--border:#ECEDF0;--border-strong:#E0E2E7;--divider:#F0F1F4;--disabled-bg:#EBEBF0;--disabled-text:#A1A1AA;--focus-ring:#1C70D4;
+}
+[data-theme="dark"]{
+--brand-primary:#4C93EA;--brand-primary-hover:#6AA6EF;--brand-primary-active:#8BBAF3;--brand-primary-subtle:#14284A;--brand-primary-on:#0A1526;
+--brand-secondary:#FF4A4D;--brand-secondary-hover:#FF6366;--brand-secondary-subtle:#3A1517;
+--success:#2CC98A;--success-subtle:#0F2F23;--success-text:#5ADBA6;
+--warning:#FFD633;--warning-subtle:#33290D;--warning-text:#F5CB73;
+--error:#F0706C;--error-subtle:#3A1816;--error-text:#FF9E9A;--error-on:#1F0908;
+--info:#4C93EA;--info-subtle:#14284A;--info-text:#8BBAF3;
+--pending:#E0B466;--pending-subtle:#33290D;--pending-text:#F5CB73;
+--neutral-status:#A1A1AA;--neutral-subtle:#27272A;--neutral-text:#D4D4D8;
+--bg-app:#131416;--bg-secondary:#1A1B1E;--surface:#1E1F23;--surface-elevated:#26272C;--surface-sidebar:#17181B;--surface-topbar:#17181B;
+--text-primary:#F4F4F5;--text-secondary:#D4D4D8;--text-muted:#A1A1AA;--text-placeholder:#71717A;--text-on-brand:#0A1526;--text-link:#8BBAF3;
+--border:#28292F;--border-strong:#34353C;--divider:#222328;--disabled-bg:#26272C;--disabled-text:#5B5C63;--focus-ring:#6AA6EF;
+}

@@ -1,0 +1,1 @@
+Interactive Ghost ERP overview dashboard (sidebar, top bar, KPI cards, service-order table with status filters, light/dark toggle), built from `src/components/ui` and `src/components/ghost`. Source: `src/ui-kits/erp/App.tsx`. Data is fictional. Run `npm run dev` and open `/ui_kits/erp/`.

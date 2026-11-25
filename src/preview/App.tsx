@@ -34,6 +34,7 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { useTheme } from "@/hooks/use-theme"
 import { cn } from "@/lib/utils"
 import { GHOST_REPO } from "@/lib/site"
+import { SectionNav } from "@/docs/components/section-nav"
 import avatarUrl from "../../assets/ghost-avatar.svg"
 import { ENTRIES, GROUP_ORDER, type Entry, type Section } from "./registry"
 
@@ -124,6 +125,7 @@ function ThemeToggle() {
     <Button
       variant="outline"
       size="icon"
+      className="topbar-icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
     >
@@ -520,12 +522,13 @@ export function App() {
             Ghost
             <span className="font-normal text-muted-foreground">Components</span>
           </PageLink>
+          <SectionNav active="Components" className="border-b border-border pb-4" />
           <ComponentNav current={current} navigate={navigate} />
         </aside>
 
         <main className="min-w-0">
           <header className="sticky top-0 z-20 flex h-14 items-center gap-2 border-b border-border bg-background/90 px-4 backdrop-blur md:px-8">
-            <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMenuOpen(true)} aria-label="Open component list">
+            <Button variant="ghost" size="icon" className="topbar-icon md:hidden" onClick={() => setMenuOpen(true)} aria-label="Open component list">
               <MenuIcon />
             </Button>
             <p className="min-w-0 truncate text-sm text-muted-foreground">
@@ -548,7 +551,7 @@ export function App() {
                   <ArrowUpRightIcon data-icon="inline-end" />
                 </a>
               </Button>
-              <Button variant="outline" size="icon" asChild>
+              <Button variant="outline" size="icon" asChild className="topbar-icon">
                 <a href={GHOST_REPO} target="_blank" rel="noreferrer" aria-label="Ghost on GitHub" title="Ghost on GitHub">
                   <GithubIcon />
                 </a>
@@ -567,6 +570,7 @@ export function App() {
             <SheetTitle>Ghost Components</SheetTitle>
             <SheetDescription>{ENTRIES.length} components</SheetDescription>
           </SheetHeader>
+          <SectionNav active="Components" className="border-b border-border pb-3" />
           <ComponentNav current={current} navigate={navigate} onNavigate={() => setMenuOpen(false)} />
         </SheetContent>
       </Sheet>

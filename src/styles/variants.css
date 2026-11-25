@@ -86,6 +86,18 @@
   }
 }
 
+/* Icon buttons in a top bar (Button size="icon"): filled top bar blue with a white icon. */
+@utility topbar-icon {
+  color: var(--topbar-icon-foreground);
+  background-color: var(--topbar-icon);
+  border-color: transparent;
+  &:hover,
+  &[aria-expanded="true"] {
+    color: var(--topbar-icon-foreground);
+    background-color: var(--topbar-icon-hover);
+  }
+}
+
 @utility no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;

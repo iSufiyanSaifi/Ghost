@@ -12,6 +12,7 @@ import { Kbd } from "@/components/ui/kbd"
 import { useTheme } from "@/hooks/use-theme"
 import { cn } from "@/lib/utils"
 import avatarUrl from "../../../assets/ghost-avatar.svg"
+import { GHOST_SECTIONS } from "@/lib/site"
 import { GHOST_REPO } from "../integrations"
 import { GHOST_VERSION } from "../usage"
 
@@ -20,11 +21,7 @@ export interface DocsTab {
   href: string
 }
 
-export const DOCS_TABS: DocsTab[] = [
-  { label: "Components", href: "/preview/" },
-  { label: "Integrations", href: "/docs/integrations/" },
-  { label: "ERP kit", href: "/ui_kits/erp/" },
-]
+export const DOCS_TABS: DocsTab[] = GHOST_SECTIONS
 
 export interface DocsTopBarProps {
   /** Label of the current tab, e.g. "Integrations". */
@@ -39,7 +36,7 @@ export function DocsTopBar({ active, onOpenSearch, onOpenMenu }: DocsTopBarProps
   return (
     <header data-slot="docs-top-bar" className="sticky top-0 z-30 border-b border-border bg-card">
       <div className="flex h-14 items-center gap-3 px-4 lg:px-6">
-        <Button variant="ghost" size="icon" className="lg:hidden" onClick={onOpenMenu} aria-label="Open navigation">
+        <Button variant="ghost" size="icon" className="topbar-icon lg:hidden" onClick={onOpenMenu} aria-label="Open navigation">
           <MenuIcon />
         </Button>
         <a href="/docs/integrations/" className="flex items-center gap-2 rounded-md font-semibold outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
@@ -90,10 +87,10 @@ export function DocsTopBar({ active, onOpenSearch, onOpenMenu }: DocsTopBarProps
             Search docs…
             <Kbd className="ml-auto">⌘K</Kbd>
           </Button>
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={onOpenSearch} aria-label="Search Ghost docs">
+          <Button variant="ghost" size="icon" className="topbar-icon md:hidden" onClick={onOpenSearch} aria-label="Search Ghost docs">
             <SearchIcon />
           </Button>
-          <Button variant="ghost" size="icon" asChild>
+          <Button variant="ghost" size="icon" asChild className="topbar-icon">
             <a href={GHOST_REPO} target="_blank" rel="noreferrer" aria-label="Ghost on GitHub" title="Ghost on GitHub">
               <GithubIcon />
             </a>
@@ -101,6 +98,7 @@ export function DocsTopBar({ active, onOpenSearch, onOpenMenu }: DocsTopBarProps
           <Button
             variant="ghost"
             size="icon"
+            className="topbar-icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
           >

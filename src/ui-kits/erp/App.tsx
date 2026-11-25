@@ -1,5 +1,6 @@
 import * as React from "react"
 import {
+  ArrowLeftIcon,
   BarChart3Icon,
   Building2Icon,
   CarIcon,
@@ -35,18 +36,22 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarInset,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  SidebarSeparator,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { SECTION_ICONS } from "@/docs/components/section-nav"
 import { useTheme } from "@/hooks/use-theme"
+import { GHOST_SECTIONS } from "@/lib/site"
 
 /** Fictional demo data. */
 interface Order {
@@ -94,13 +99,37 @@ export function App() {
     <TooltipProvider>
       <SidebarProvider>
         <Sidebar collapsible="icon">
-          <SidebarHeader>
-            <div className="flex h-10 items-center px-2 text-xl font-bold tracking-tight group-data-[collapsible=icon]:hidden">
+          <SidebarHeader className="flex-row items-center">
+            <div className="flex h-10 min-w-0 flex-1 items-center px-2 text-xl font-bold tracking-tight group-data-[collapsible=icon]:hidden">
               Car<span className="text-primary">Volf</span>
               <span className="ml-1.5 text-[13px] font-normal text-muted-foreground">Garage</span>
             </div>
+            {/* Collapsed to icons, the brand hides and the toggle is centred in the rail. */}
+            <SidebarTrigger className="group-data-[collapsible=icon]:mx-auto" />
           </SidebarHeader>
           <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Ghost</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {GHOST_SECTIONS.map((section) => {
+                    const Icon = SECTION_ICONS[section.label]
+                    const current = section.label === "ERP kit"
+                    return (
+                      <SidebarMenuItem key={section.href}>
+                        <SidebarMenuButton asChild isActive={current} tooltip={section.label}>
+                          <a href={section.href} aria-current={current ? "page" : undefined}>
+                            <Icon />
+                            <span>{section.label}</span>
+                          </a>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    )
+                  })}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+            <SidebarSeparator />
             <SidebarGroup>
               <SidebarGroupContent>
                 <SidebarMenu>
@@ -131,7 +160,15 @@ export function App() {
 
         <SidebarInset className="min-w-0">
           <header className="sticky top-0 z-10 flex h-16 items-center gap-3 border-b border-border bg-card px-4 md:px-6">
-            <SidebarTrigger />
+            <Button variant="ghost" size="sm" asChild className="max-sm:size-8 max-sm:p-0">
+              <a href="/preview/" aria-label="Back to Ghost components">
+                <ArrowLeftIcon data-icon="inline-start" />
+                <span className="max-sm:sr-only">Components</span>
+              </a>
+            </Button>
+            {/* Below md the sidebar is a hidden sheet, so the header keeps a toggle to open it. */}
+            <Separator orientation="vertical" className="h-5 md:hidden" />
+            <SidebarTrigger className="topbar-icon md:hidden" />
             <Separator orientation="vertical" className="h-5" />
             <InputGroup className="max-w-md min-w-0 flex-1">
               <InputGroupAddon>
@@ -143,13 +180,14 @@ export function App() {
               <Button
                 variant="ghost"
                 size="icon"
+                className="topbar-icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
               >
                 {theme === "dark" ? <SunIcon /> : <MoonIcon />}
               </Button>
               {/* Narrow screens get a square icon button so the + sits dead centre. */}
-              <Button size="icon" className="lg:hidden" aria-label="Create service order">
+              <Button size="icon" className="topbar-icon lg:hidden" aria-label="Create service order">
                 <PlusIcon />
               </Button>
               <Button className="hidden lg:inline-flex">

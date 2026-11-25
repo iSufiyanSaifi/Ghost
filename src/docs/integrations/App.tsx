@@ -16,6 +16,7 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { DocsFeedback } from "../components/docs-feedback"
 import { DocsSearch, useDocsSearchShortcut } from "../components/docs-search"
 import { DocsSidebar } from "../components/docs-sidebar"
+import { SectionNav } from "../components/section-nav"
 import { DocsToc, useActiveSection, type TocItem } from "../components/docs-toc"
 import { DocsTopBar } from "../components/docs-top-bar"
 import { IntegrationCard } from "../components/integration-card"
@@ -109,6 +110,7 @@ export function App() {
 
       <div className="mx-auto flex w-full max-w-[1440px]">
         <aside className="sticky top-[100px] hidden h-[calc(100svh-100px)] w-64 shrink-0 overflow-y-auto border-r border-border px-3 py-6 lg:block">
+          <SectionNav active="Integrations" className="mb-4 border-b border-border pb-4" />
           <DocsSidebar categories={CATEGORIES} activeId={sidebarActive} />
         </aside>
 
@@ -215,6 +217,7 @@ export function App() {
             <SheetTitle>Ghost Docs</SheetTitle>
             <SheetDescription>Integrations</SheetDescription>
           </SheetHeader>
+          <SectionNav active="Integrations" className="mx-2 mb-3 border-b border-border pb-3" />
           <DocsSidebar categories={CATEGORIES} activeId={sidebarActive} onNavigate={() => setMenuOpen(false)} className="px-2 pb-6" />
         </SheetContent>
       </Sheet>

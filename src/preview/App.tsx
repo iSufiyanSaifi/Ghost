@@ -3,6 +3,7 @@ import {
   ArrowLeftIcon,
   ArrowRightIcon,
   ArrowUpRightIcon,
+  GithubIcon,
   LayoutGridIcon,
   MenuIcon,
   MoonIcon,
@@ -32,6 +33,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { useTheme } from "@/hooks/use-theme"
 import { cn } from "@/lib/utils"
+import { GHOST_REPO } from "@/lib/site"
 import avatarUrl from "../../assets/ghost-avatar.svg"
 import { ENTRIES, GROUP_ORDER, type Entry, type Section } from "./registry"
 
@@ -544,6 +546,11 @@ export function App() {
                 <a href="/docs/integrations/">
                   Integrations
                   <ArrowUpRightIcon data-icon="inline-end" />
+                </a>
+              </Button>
+              <Button variant="outline" size="icon" asChild>
+                <a href={GHOST_REPO} target="_blank" rel="noreferrer" aria-label="Ghost on GitHub" title="Ghost on GitHub">
+                  <GithubIcon />
                 </a>
               </Button>
               <ThemeToggle />

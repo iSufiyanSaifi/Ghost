@@ -25,7 +25,7 @@ export interface IntegrationCategory {
   extend: string
 }
 
-export const GHOST_REPO = "https://github.com/Ghost/Ghost"
+export { GHOST_REPO } from "@/lib/site"
 
 export const PAGE = {
   title: "Integrations",

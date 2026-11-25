@@ -93,6 +93,11 @@ export function DocsTopBar({ active, onOpenSearch, onOpenMenu }: DocsTopBarProps
           <Button variant="ghost" size="icon" className="md:hidden" onClick={onOpenSearch} aria-label="Search Ghost docs">
             <SearchIcon />
           </Button>
+          <Button variant="ghost" size="icon" asChild>
+            <a href={GHOST_REPO} target="_blank" rel="noreferrer" aria-label="Ghost on GitHub" title="Ghost on GitHub">
+              <GithubIcon />
+            </a>
+          </Button>
           <Button
             variant="ghost"
             size="icon"

@@ -17,6 +17,29 @@ import {
 } from "@/components/ui/input-group"
 import { CheckIcon, SearchIcon } from "lucide-react"
 
+/**
+ * cmdk keeps the selected item visible with `element.scrollIntoView({ block: "nearest" })`. That scrolls
+ * every scrollable ancestor, the page included, so an inline Command below the fold dragged the page
+ * down to itself on load. Items and group headings use this instead: only the list scrolls.
+ */
+function scrollWithinList(element: HTMLElement) {
+  const list = element.closest<HTMLElement>("[cmdk-list]")
+  if (!list || list.scrollHeight <= list.clientHeight) return
+  const box = list.getBoundingClientRect()
+  const rect = element.getBoundingClientRect()
+  if (rect.top < box.top) list.scrollTop -= box.top - rect.top
+  else if (rect.bottom > box.bottom) list.scrollTop += rect.bottom - box.bottom
+}
+
+function containScroll(element: HTMLElement | null) {
+  if (element) element.scrollIntoView = () => scrollWithinList(element)
+}
+
+function setRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
+  if (typeof ref === "function") ref(value)
+  else if (ref) ref.current = value
+}
+
 function Command({
   className,
   ...props
@@ -121,10 +144,15 @@ function CommandEmpty({
 
 function CommandGroup({
   className,
+  ref,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Group>) {
   return (
     <CommandPrimitive.Group
+      ref={(element: HTMLDivElement | null) => {
+        containScroll(element?.querySelector<HTMLElement>("[cmdk-group-heading]") ?? null)
+        setRef(ref, element)
+      }}
       data-slot="command-group"
       className={cn("cn-command-group", className)}
       {...props}
@@ -148,10 +176,15 @@ function CommandSeparator({
 function CommandItem({
   className,
   children,
+  ref,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Item>) {
   return (
     <CommandPrimitive.Item
+      ref={(element: HTMLDivElement | null) => {
+        containScroll(element)
+        setRef(ref, element)
+      }}
       data-slot="command-item"
       className={cn(
         "cn-command-item group/command-item data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
